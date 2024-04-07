@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<html lang="pt-br">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TWProjects - Editar de Clientes</title>
+
+    <!-- Pico CSS Styles -->
+    <link rel="stylesheet" th:href="@{/css/pico.min.css}">
+</head>
+<body>
+<nav class="container-fluid">
+    <ul>
+        <li><strong>TWProjects</strong></li>
+    </ul>
+    <ul>
+        <li><a th:href="@{/clients}">Clientes</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    <h1>Editar de Clientes</h1>
+
+    <form method="post" th:object="${clientForm}">
+        <label>
+            Nome*
+            <input type="text" th:field="*{name}" required>
+        </label>
+
+        <label>
+            E-mail*
+            <input type="email" th:field="*{email}" required>
+        </label>
+
+        <label>
+            Telefone*
+            <input
+                    type="text"
+                    th:field="*{fone}"
+                    required
+                    placeholder="(00) 00000-0000"
+                    pattern="^\(\d{2}\) \d{5}-\d{4}$"
+            >
+        </label>
+
+        <button type="submit">Salvar</button>
+    </form>
+</main>
+</body>
+</html>

@@ -11,9 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClientViewModel {
-
-    private Long id;
+public class ClientForm {
 
     private String name;
 
@@ -21,17 +19,21 @@ public class ClientViewModel {
 
     private String fone;
 
-    public String getFone() {
-        return StringUtils.formatPhone(fone);
+    public Client toClient() {
+        return Client.builder()
+                .name(name)
+                .email(email)
+                .fone(StringUtils.cleanPhone(fone))
+                .build();
     }
 
-    public static ClientViewModel of(Client client) {
-        return ClientViewModel.builder()
-                .id(client.getId())
+    public static ClientForm of(Client client) {
+        return ClientForm.builder()
                 .name(client.getName())
                 .email(client.getEmail())
                 .fone(StringUtils.formatPhone(client.getFone()))
                 .build();
     }
+
 
 }

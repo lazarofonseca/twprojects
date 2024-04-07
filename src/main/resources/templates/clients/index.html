@@ -9,7 +9,7 @@
     <title>TWProjects - Listagem de Clientes</title>
 
     <!-- Pico CSS Styles -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1.5.10/css/pico.min.css">
+    <link rel="stylesheet" th:href="@{/css/pico.min.css}">
 </head>
 <body>
 <nav class="container-fluid">
@@ -17,7 +17,7 @@
         <li><strong>TWProjects</strong></li>
     </ul>
     <ul>
-        <li><a href="#">Clientes</a></li>
+        <li><a th:href="@{http://localhost:8080/clients}">Clientes</a></li>
     </ul>
 </nav>
 
@@ -31,6 +31,7 @@
             <th scope="col">Nome</th>
             <th scope="col">E-mail</th>
             <th scope="col">Telefone</th>
+            <th scope="col">Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -39,11 +40,17 @@
             <td th:text="${client.name}">Cleyson Lima</td>
             <td th:text="${client.email}">cleyson@mail.com</td>
             <td th:text="${client.fone}">(11) 99999-9999</td>
+            <td>
+                <a th:href="@{/clients/edit/{id} (id=${client.id})}">Editar</a>
+                <a th:href="@{/clients/delete/{id} (id=${client.id})}"
+                    onclick="return confirm('Tem certeza de que deseja excluir o cliente?')"
+                >Excluir</a>
+            </td>
         </tr>
         </tbody>
     </table>
 
-    <a href="#" role="button">Novo cliente</a>
+    <a th:href="@{/clients/create}" role="button">Novo cliente</a>
 </main>
 </body>
 </html>
