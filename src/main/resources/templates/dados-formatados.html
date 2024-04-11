@@ -1,0 +1,11 @@
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<h1>Formatação de dados</h1>
+
+<p><strong>Data: </strong><span th:text="${#temporals.format(date, 'dd/MM/yyyy')}"></span></p>
+
+<p><strong>Data e Hora: </strong><span th:text="${#temporals.format(dateTime)}"></span></p>
+
+<p><strong>R$: </strong><span th:text="${#numbers.formatCurrency(currency)}"></span></p>
+
+<p><strong>Percentual: </strong><span th:text="${percent}"></span></p>
