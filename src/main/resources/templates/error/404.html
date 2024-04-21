@@ -2,30 +2,15 @@
 <html lang="pt-br">
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TWProjects - Página Não Encontrada</title>
 
-    <!-- Pico CSS Styles -->
-    <link rel="stylesheet" th:href="@{/css/pico.min.css}">
-</head>
-<body>
-<nav class="container-fluid">
-    <ul>
-        <li><strong>TWProjects</strong></li>
-    </ul>
-    <ul>
-        <li><a href="#">Clientes</a></li>
-    </ul>
-</nav>
+<html th:replace="~{layout :: layout (~{::title}, ~{::content}, _, _)}">
+<th:block th:fragment="title">Página Não Encontrada</th:block>
 
-<main class="container">
+<th:block th:fragment="content">
     <h1>404</h1>
     <p>
         A página que você procura não foi encontrada
     </p>
     <a onclick="window.history.back()">Voltar</a>
-</main>
-</body>
+</th:block>
 </html>

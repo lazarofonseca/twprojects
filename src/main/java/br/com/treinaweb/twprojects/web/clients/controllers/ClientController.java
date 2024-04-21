@@ -36,8 +36,8 @@ public class ClientController {
 
     @GetMapping("create")
     public ModelAndView create() {
-        var model = Map.of("clientForm", new ClientForm());
-        return new ModelAndView("clients/create", model);
+        var model = Map.of("clientForm", new ClientForm(), "pageTitle", "Cadastro de Clientes");
+        return new ModelAndView("clients/form", model);
     }
 
     @PostMapping("/create")
@@ -53,8 +53,8 @@ public class ClientController {
         if(!client.isPresent()) {
             throw new NoSuchElementException("Cliente não encontrado.");
         }
-        var model = Map.of("clientForm", ClientForm.of(client.get()));
-        return new ModelAndView("clients/edit", model);
+        var model = Map.of("clientForm", ClientForm.of(client.get()), "pageTitle", "Edição de Clientes");
+        return new ModelAndView("clients/form", model);
     }
 
     @PostMapping("edit/{id}")
@@ -71,6 +71,15 @@ public class ClientController {
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
+        if (!clientRepository.existsById(id)) {
+            throw new NoSuchElementException("Cliente não encontrado");
+        }
+        clientRepository.deleteById(id);
+        return "redirect:/clients";
+    }
+
+    @GetMapping("/clients/{id}")
+    public String findById(@PathVariable Long id) {
         if (!clientRepository.existsById(id)) {
             throw new NoSuchElementException("Cliente não encontrado");
         }
